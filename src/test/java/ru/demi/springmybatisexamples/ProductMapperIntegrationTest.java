@@ -1,8 +1,10 @@
-package ru.demi.springmybatisexamples.simple;
+package ru.demi.springmybatisexamples;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,7 +16,7 @@ public class ProductMapperIntegrationTest {
  
     @Test
     public void shouldReturnProductById() {
-        Product product = productMapper.getProductById(1L);
+        Product product = productMapper.getById(1L);
  
         assertThat(product).isNotNull();
         assertThat(product.getId()).isNotNull();
@@ -22,5 +24,17 @@ public class ProductMapperIntegrationTest {
         assertThat(product.getPrice()).isNotNull();
         assertThat(product.getProducer()).isNotNull();
         assertThat(product.getCountry()).isNotNull();
+    }
+
+    @Test
+    public void shouldReturnProductsByCountry() {
+        List<Product> products = productMapper.getAllByCountry("Spain");
+        assertThat(products.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void shouldReturnCountsByCountry() {
+        List<CountByCountry> countsByCountry = productMapper.getAllCountsByCountry();
+        assertThat(countsByCountry.size()).isEqualTo(3);
     }
 }

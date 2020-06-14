@@ -1,4 +1,4 @@
-package ru.demi.springmybatisexamples.simple;
+package ru.demi.springmybatisexamples;
 
 import lombok.Getter;
 import lombok.Setter;
