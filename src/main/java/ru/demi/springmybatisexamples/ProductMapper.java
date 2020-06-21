@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Mapper
@@ -24,4 +26,7 @@ public interface ProductMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     @Insert("INSERT INTO Products(name, price, producer, country) VALUES (#{name}, #{price}, #{producer}, #{country})")
     int insert(Product product);
+
+    @Update("UPDATE Products SET price = #{price} WHERE id = #{id}")
+    int updatePrice(@Param("id") long id, @Param("price") BigDecimal price);
 }
