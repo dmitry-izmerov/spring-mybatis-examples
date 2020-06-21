@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,5 +37,17 @@ public class ProductMapperIntegrationTest {
     public void shouldReturnCountsByCountry() {
         List<CountByCountry> countsByCountry = productMapper.getAllCountsByCountry();
         assertThat(countsByCountry.size()).isEqualTo(3);
+    }
+
+    @Test
+    public void shouldInsertProduct() {
+        Product product = new Product();
+        product.setName("Kefir");
+        product.setPrice(new BigDecimal("75.50"));
+        product.setProducer("AO Sofrino");
+        product.setCountry("Russia");
+
+        int result = productMapper.insert(product);
+        assertThat(result).isEqualTo(1);
     }
 }
