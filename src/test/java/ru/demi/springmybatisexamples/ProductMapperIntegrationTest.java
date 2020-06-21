@@ -56,4 +56,10 @@ public class ProductMapperIntegrationTest {
         int result = productMapper.updatePrice(3, new BigDecimal("27.25"));
         assertThat(result).isEqualTo(1);
     }
+
+    @Test
+    public void shouldDeleteProductById() {
+        int result = productMapper.deleteById(1);
+        assertThat(result).isEqualTo(1);
+    }
 }

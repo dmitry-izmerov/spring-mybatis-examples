@@ -1,5 +1,6 @@
 package ru.demi.springmybatisexamples;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -29,4 +30,7 @@ public interface ProductMapper {
 
     @Update("UPDATE Products SET price = #{price} WHERE id = #{id}")
     int updatePrice(@Param("id") long id, @Param("price") BigDecimal price);
+
+    @Delete("DELETE Products WHERE id = #{id}")
+    int deleteById(@Param("id") long id);
 }
